@@ -17,9 +17,26 @@ public class BucketListController {
         myBucketList.add(new BucketList(counter.incrementAndGet(), "Visit Colosseum in Rome"));
     }
 
+    class Data {
+
+        private String s = "";
+
+        public Data(String s) {
+            this.s = s;
+        }
+
+        public String getS() {
+            return s;
+        }
+
+        public void setS(String s) {
+            this.s = s;
+        }
+    }
+
     @GetMapping(value = "/")
     public ResponseEntity index() {
-        return ResponseEntity.ok("По английскому что задали?");
+        return ResponseEntity.ok(new Data("По английскому что задали?"));
     }
 
     @GetMapping(value = "/bucket")
