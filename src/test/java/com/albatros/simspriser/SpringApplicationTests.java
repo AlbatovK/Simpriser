@@ -1,4 +1,4 @@
-package com.zerotoproduction.firstrest;
+package com.albatros.simspriser;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

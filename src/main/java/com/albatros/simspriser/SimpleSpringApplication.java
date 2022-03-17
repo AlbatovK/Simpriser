@@ -1,13 +1,12 @@
-package com.zerotoproduction.firstrest;
+package com.albatros.simspriser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FirstrestApplication {
+public class SimpleSpringApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FirstrestApplication.class, args);
+		SpringApplication.run(SimpleSpringApplication.class, args);
 	}
-
 }

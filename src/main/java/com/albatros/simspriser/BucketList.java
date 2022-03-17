@@ -1,4 +1,4 @@
-package com.zerotoproduction.firstrest;
+package com.albatros.simspriser;
 
 public class BucketList {
 

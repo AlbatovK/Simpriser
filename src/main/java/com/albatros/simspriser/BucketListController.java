@@ -1,4 +1,4 @@
-package com.zerotoproduction.firstrest;
+package com.albatros.simspriser;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
