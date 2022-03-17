@@ -19,7 +19,7 @@ public class BucketListController {
 
     @GetMapping(value = "/")
     public ResponseEntity index() {
-        return ResponseEntity.ok("a");
+        return ResponseEntity.ok("По английскому что задали?");
     }
 
     @GetMapping(value = "/bucket")
