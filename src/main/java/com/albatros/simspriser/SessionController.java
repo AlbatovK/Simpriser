@@ -34,9 +34,9 @@ public class SessionController {
         }
     }
 
-    @PostMapping(value = "/send")
-    public void addLogin(@RequestBody Data data) {
-        SessionController.data.add(data);
+    @GetMapping(value = "/send")
+    public void addLogin(@RequestParam(value="login") String login) {
+        SessionController.data.add(new Data((login)));
     }
 
     @GetMapping(value = "/get")
