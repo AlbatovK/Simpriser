@@ -2,9 +2,7 @@ package com.albatros.simspriser;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +11,39 @@ import java.util.List;
 public class SessionController {
 
     public static final List<Session> sessions = new ArrayList<>();
+
+    public static final List<Data> data = new ArrayList<>();
+
+    static {
+        data.add(new Data("add login!"));
+    }
+
+    static class Data {
+        private String login;
+
+        public Data(String login) {
+            this.login = login;
+        }
+
+        public String getLogin() {
+            return login;
+        }
+
+        public void setLogin(String login) {
+            this.login = login;
+        }
+    }
+
+    @PostMapping(value = "/send")
+    public void addLogin(@RequestBody Data data) {
+        SessionController.data.add(data);
+    }
+
+    @GetMapping(value = "/get")
+    public List<Data> getLogins() {
+        return data;
+    }
+
 
     @GetMapping(value = "/session/register")
     public ResponseEntity<Integer> registerSession() {
