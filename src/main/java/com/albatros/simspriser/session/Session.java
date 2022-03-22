@@ -34,11 +34,13 @@ public class Session {
 
         private long id;
         private String name;
+        private boolean started;
         private HashMap<Integer, Boolean> questionMap = new HashMap<>();
 
         public ClientInfo(String name) {
             this.id = UUID.randomUUID().getMostSignificantBits();
             this.name = name;
+            this.started = false;
         }
 
         public ClientInfo() {}
@@ -57,6 +59,14 @@ public class Session {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public boolean getStarted() {
+            return started;
+        }
+
+        public void setStarted(boolean started) {
+            this.started = started;
         }
 
         public HashMap<Integer, Boolean> getQuestionMap() {

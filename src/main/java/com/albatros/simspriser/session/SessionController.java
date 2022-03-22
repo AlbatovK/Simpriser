@@ -65,6 +65,21 @@ public class SessionController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/{userId}/start")
+    public void userStart(
+            @PathVariable("userId") long userId,
+            @RequestParam("session_id") long session_id) {
+        for (Session current : sessions) {
+            if (current.getId() == session_id) {
+                for (Session.ClientInfo info: current.getInfo()) {
+                    if (info.getId() == userId) {
+                        info.setStarted(true);
+                    }
+                }
+            }
+        }
+    }
+
     @GetMapping("/start")
     public void startSession(@RequestParam("session_id") long session_id) {
         for (Session current : sessions) {
