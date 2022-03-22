@@ -26,6 +26,8 @@ public class Session {
         this.started = false;
     }
 
+    public Session() {}
+
     public void addClientInfo(ClientInfo info) {
         this.info.add(info);
     }

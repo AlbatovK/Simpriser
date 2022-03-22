@@ -189,6 +189,11 @@ public class SessionController {
         return data;
     }
 
+    @GetMapping("/info/sessions")
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
     @GetMapping("/end")
     public void endIfExists(@RequestParam("session_id") long session_id) {
         for (Session current : sessions) {
