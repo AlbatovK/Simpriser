@@ -1,8 +1,6 @@
 package com.albatros.simspriser.quiz;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +28,16 @@ public class QuizController {
 
         Quiz quiz = new Quiz("TestQuiz", questions, topics);
         availableQuizzes.add(quiz);
+    }
+
+    @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
+    public void createQuiz(@RequestBody Quiz quiz) {
+        availableQuizzes.add(quiz);
+    }
+
+    @GetMapping("/delete")
+    public void deleteQuiz(@RequestParam("quiz_id") long quiz_id) {
+        availableQuizzes.removeIf(q -> q.getId() == quiz_id);
     }
 
     @GetMapping("/get/all")
