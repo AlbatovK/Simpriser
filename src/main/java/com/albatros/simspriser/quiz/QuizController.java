@@ -17,10 +17,21 @@ public class QuizController {
         List<String> vars1 = new ArrayList<>();
         vars1.add("5");
         vars1.add("4");
+        vars1.add("3");
+        vars1.add("2");
 
-        Quiz.Question question = new Quiz.Question("What is 2 + 2?", vars1, "4");
+        Quiz.Question q1 = new Quiz.Question("What is 2 + 2?", vars1, "4");
+
+        Quiz.Question q2 = new Quiz.Question("What is 2 * 2?", vars1, "4");
+
+        Quiz.Question q3 = new Quiz.Question("What is 2 ^ 2?", vars1, "4");
+
+
+
         List<Quiz.Question> questions = new ArrayList<>();
-        questions.add(question);
+        questions.add(q1);
+        questions.add(q2);
+        questions.add(q3);
 
         List<String> topics = new ArrayList<>();
         topics.add("Math");
