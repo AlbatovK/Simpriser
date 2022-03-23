@@ -26,13 +26,13 @@ public class Quiz {
 
     public Quiz() {}
 
-    static class Question<V> {
+    static class Question {
 
         private String description;
-        private List<V> variants;
-        private V answer;
+        private List<String> variants;
+        private String answer;
 
-        public Question(String description, List<V> variants, V answer) {
+        public Question(String description, List<String> variants, String answer) {
             this.description = description;
             this.variants = variants;
             this.answer = answer;
@@ -46,19 +46,19 @@ public class Quiz {
             return description;
         }
 
-        public List<V> getVariants() {
+        public List<String> getVariants() {
             return variants;
         }
 
-        public void setVariants(List<V> variants) {
+        public void setVariants(List<String> variants) {
             this.variants = variants;
         }
 
-        public V getAnswer() {
+        public String getAnswer() {
             return answer;
         }
 
-        public void setAnswer(V answer) {
+        public void setAnswer(String answer) {
             this.answer = answer;
         }
     }

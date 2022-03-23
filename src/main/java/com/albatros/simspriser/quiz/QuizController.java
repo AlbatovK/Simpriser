@@ -18,7 +18,7 @@ public class QuizController {
         vars1.add("5");
         vars1.add("4");
 
-        Quiz.Question<String> question = new Quiz.Question<>("What is 2 + 2?", vars1, "4");
+        Quiz.Question question = new Quiz.Question("What is 2 + 2?", vars1, "4");
         List<Quiz.Question> questions = new ArrayList<>();
         questions.add(question);
 
