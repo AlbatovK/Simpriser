@@ -26,8 +26,6 @@ public class QuizController {
 
         Quiz.Question q3 = new Quiz.Question("What is 2 ^ 2?", vars1, "4");
 
-
-
         List<Quiz.Question> questions = new ArrayList<>();
         questions.add(q1);
         questions.add(q2);
@@ -39,6 +37,32 @@ public class QuizController {
 
         Quiz quiz = new Quiz("TestQuiz", questions, topics);
         availableQuizzes.add(quiz);
+
+        /* ####### */
+
+        List<String> vars2 = new ArrayList<>();
+        vars1.add("5");
+        vars1.add("4");
+        vars1.add("3");
+        vars1.add("2");
+
+        Quiz.Question q4 = new Quiz.Question("What is 3 + 3?", vars2, "4");
+
+        Quiz.Question q5 = new Quiz.Question("What is 3 * 3?", vars2, "4");
+
+        Quiz.Question q6 = new Quiz.Question("What is 3 ^ 3?", vars2, "4");
+
+        List<Quiz.Question> qs = new ArrayList<>();
+        qs.add(q4);
+        qs.add(q5);
+        qs.add(q6);
+
+        List<String> ts = new ArrayList<>();
+        ts.add("Math");
+        ts.add("Educational");
+
+        Quiz qz = new Quiz("AnotherQuiz", qs, ts);
+        availableQuizzes.add(qz);
     }
 
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
