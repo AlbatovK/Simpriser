@@ -189,6 +189,11 @@ public class SessionController {
         return data;
     }
 
+    @GetMapping("/delete/all")
+    public void deleteSessions() {
+        sessions.clear();
+    }
+
     @GetMapping("/info/sessions")
     public List<Session> getSessions() {
         return sessions;
