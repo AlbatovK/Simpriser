@@ -56,7 +56,7 @@ public class QuizController {
 
         List<String> ts = new ArrayList<>();
         ts.add("Math");
-        ts.add("Education");
+        ts.add("Educational");
 
         Quiz qz = new Quiz("NextQuiz", qs, ts);
         availableQuizzes.add(qz);
