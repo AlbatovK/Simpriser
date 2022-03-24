@@ -205,6 +205,7 @@ public class SessionController {
             if (current.getId() == session_id) {
                 current.getInfo().clear();
                 sessions.remove(current);
+                break;
             }
         }
     }
