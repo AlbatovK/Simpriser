@@ -41,10 +41,10 @@ public class QuizController {
         /* ####### */
 
         List<String> vars2 = new ArrayList<>();
-        vars1.add("5");
-        vars1.add("4");
-        vars1.add("3");
-        vars1.add("2");
+        vars2.add("5");
+        vars2.add("4");
+        vars2.add("3");
+        vars2.add("2");
 
         Quiz.Question q4 = new Quiz.Question("What is 3 + 3?", vars2, "4");
 
