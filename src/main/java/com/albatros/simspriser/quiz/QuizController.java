@@ -70,7 +70,7 @@ public class QuizController {
         Quiz.Question qa = new Quiz.Question("Сколько будет 77 + 33?", a, "100");
         Quiz.Question qb = new Quiz.Question("Сваливаешь с проекта?", b, "Да");
         Quiz.Question qc = new Quiz.Question("Колодин", c, "Колодин?");
-        Quiz.Question qd = new Quiz.Question("Поддерживаешь гей-митинги?", d, "Нет");
+        Quiz.Question qd = new Quiz.Question("Хозяйственная деятельность общества, а также совокупность отношений, складывающихся в системе производства, распределения, обмена и потребления.", d, "Нет");
 
         List<String> ta = Arrays.asList("Колодин");
 
