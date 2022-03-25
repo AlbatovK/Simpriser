@@ -3,6 +3,7 @@ package com.albatros.simspriser.quiz;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RequestMapping("/quiz")
@@ -60,6 +61,22 @@ public class QuizController {
 
         Quiz qz = new Quiz("NextQuiz", qs, ts);
         availableQuizzes.add(qz);
+
+        List<String> a = Arrays.asList("110", "100", "Колодин", "69");
+        List<String> b = Arrays.asList("Да", "Нет", "Колодин", "Тупой вопрос");
+        List<String> c = Arrays.asList("Колодин?", "Колодин!", "Колодин...", "Колодин.");
+        List<String> d = Arrays.asList("Да", "Да", "Да", "Да");
+
+        Quiz.Question qa = new Quiz.Question("Сколько будет 77 + 33?", a, "100");
+        Quiz.Question qb = new Quiz.Question("Сваливаешь с проекта?", b, "Да");
+        Quiz.Question qc = new Quiz.Question("Колодин", c, "Колодин?");
+        Quiz.Question qd = new Quiz.Question("Поддерживаешь гей-митинги?", d, "Нет");
+
+        List<String> ta = Arrays.asList("Колодин");
+
+        Quiz res = new Quiz("KolodinQuiz", Arrays.asList(qa, qb, qc, qd), ta);
+        availableQuizzes.add(res);
+
     }
 
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
