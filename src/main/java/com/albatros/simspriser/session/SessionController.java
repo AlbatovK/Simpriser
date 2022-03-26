@@ -22,8 +22,7 @@ public class SessionController {
             this.code = code;
         }
 
-        public RegisterResponse() {
-        }
+        public RegisterResponse() {}
 
         public long getCode() {
             return code;
@@ -56,7 +55,6 @@ public class SessionController {
             if (current.getId() == session_id) {
                 Session.ClientInfo info = new Session.ClientInfo(name);
                 current.addClientInfo(info);
-
                 long clientId = info.getId();
                 RegisterResponse response = new RegisterResponse(clientId);
                 return ResponseEntity.ok(response);
@@ -71,7 +69,7 @@ public class SessionController {
             @RequestParam("session_id") long session_id) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
-                for (Session.ClientInfo info: current.getInfo()) {
+                for (Session.ClientInfo info : current.getInfo()) {
                     if (info.getId() == userId) {
                         info.setStarted(true);
                     }
@@ -136,8 +134,7 @@ public class SessionController {
             this.time = time;
         }
 
-        public SendData() {
-        }
+        public SendData() {}
 
         public long getId() {
             return id;

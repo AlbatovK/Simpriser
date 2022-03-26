@@ -38,6 +38,8 @@ public class Quiz {
             this.answer = answer;
         }
 
+        public Question() {}
+
         public void setDescription(String description) {
             this.description = description;
         }
