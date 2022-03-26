@@ -177,7 +177,8 @@ public class SessionController {
             if (current.getId() == session_id) {
                 for (Session.ClientInfo info : current.getInfo()) {
                     if (info.getId() == data.getId()) {
-                        info.getQuestionMap().put(data.getPosition(), data.getRight());
+                        Session.QuestionInfo qInfo = new Session.QuestionInfo(data.getRight(), data.getTime());
+                        info.getQuestionMap().put(data.getPosition(), qInfo);
                         break;
                     }
                 }

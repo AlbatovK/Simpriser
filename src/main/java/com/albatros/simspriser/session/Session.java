@@ -32,12 +32,41 @@ public class Session {
         this.info.add(info);
     }
 
+    static class QuestionInfo {
+
+        private boolean right;
+        private int time;
+
+        public QuestionInfo(boolean right, int time) {
+            this.right = right;
+            this.time = time;
+        }
+
+        public QuestionInfo() {}
+
+        public boolean getRight() {
+            return right;
+        }
+
+        public void setRight(boolean right) {
+            this.right = right;
+        }
+
+        public int getTime() {
+            return time;
+        }
+
+        public void setTime(int time) {
+            this.time = time;
+        }
+    }
+
     static class ClientInfo {
 
         private long id;
         private String name;
         private boolean started;
-        private HashMap<Integer, Boolean> questionMap = new HashMap<>();
+        private HashMap<Integer, QuestionInfo> questionMap = new HashMap<>();
 
         public ClientInfo(String name) {
             this.id = UUID.randomUUID().getMostSignificantBits();
@@ -71,11 +100,11 @@ public class Session {
             this.started = started;
         }
 
-        public HashMap<Integer, Boolean> getQuestionMap() {
+        public HashMap<Integer, QuestionInfo> getQuestionMap() {
             return questionMap;
         }
 
-        public void setQuestionMap(HashMap<Integer, Boolean> questionMap) {
+        public void setQuestionMap(HashMap<Integer, QuestionInfo> questionMap) {
             this.questionMap = questionMap;
         }
     }
