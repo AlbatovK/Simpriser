@@ -32,7 +32,6 @@ public class QuizController {
     @GetMapping("/get/all")
     public List<Quiz> getAll() throws ExecutionException, InterruptedException {
         List<Quiz> quizzes = service.getQuizzes();
-        quizzes.forEach(l -> Collections.shuffle(l.getQuestions()));
         availableQuizzes.addAll(quizzes);
         return quizzes;
     }
