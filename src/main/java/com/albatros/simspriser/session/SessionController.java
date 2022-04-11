@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RequestMapping("/session")
@@ -37,6 +38,7 @@ public class SessionController {
     public ResponseEntity registerSession(@RequestParam("quiz_id") long quizId) {
         for (Quiz quiz : QuizController.availableQuizzes) {
             if (quiz.getId() == quizId) {
+                Collections.shuffle(quiz.getQuestions());
                 Session current = new Session(quiz);
                 sessions.add(current);
                 long code = current.getId();
