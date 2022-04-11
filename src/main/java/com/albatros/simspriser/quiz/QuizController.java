@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -31,6 +32,7 @@ public class QuizController {
     @GetMapping("/get/all")
     public List<Quiz> getAll() throws ExecutionException, InterruptedException {
         List<Quiz> quizzes = service.getQuizzes();
+        quizzes.forEach(l -> Collections.shuffle(l.getQuestions()));
         availableQuizzes.addAll(quizzes);
         return quizzes;
     }

@@ -21,7 +21,7 @@ public class Session {
     }
 
     public Session(Quiz quiz) {
-        this.id = Math.abs(UUID.randomUUID().getMostSignificantBits()) % 10000;
+        this.id = Math.abs(UUID.randomUUID().getMostSignificantBits()) % 1000000;
         this.quiz = quiz;
         this.started = false;
     }
