@@ -15,7 +15,6 @@ public class QuizService {
 
     private static final String collection_name = "quizzes";
 
-
     public void saveQuiz(Quiz quiz) throws ExecutionException, InterruptedException {
         Firestore firestore = FirestoreClient.getFirestore();
         firestore.collection(collection_name).document(quiz.getName()).set(quiz).get();

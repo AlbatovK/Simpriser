@@ -9,6 +9,8 @@ import java.util.UUID;
 
 public class Session {
 
+    private static final long modValue = 1_000_000;
+
     private long id;
     private Quiz quiz;
     private boolean started;
@@ -21,7 +23,8 @@ public class Session {
     }
 
     public Session(Quiz quiz) {
-        this.id = Math.abs(UUID.randomUUID().getMostSignificantBits()) % 1000000;
+        long raw = UUID.randomUUID().getMostSignificantBits();
+        this.id = Math.abs(raw) % modValue;
         this.quiz = quiz;
         this.started = false;
     }
@@ -66,6 +69,7 @@ public class Session {
         private long id;
         private String name;
         private boolean started;
+        private int score;
         private HashMap<Integer, QuestionInfo> questionMap = new HashMap<>();
 
         public ClientInfo(String name) {
@@ -75,6 +79,14 @@ public class Session {
         }
 
         public ClientInfo() {}
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            this.score = score;
+        }
 
         public long getId() {
             return id;
