@@ -73,6 +73,7 @@ public class Session {
         private HashMap<Integer, QuestionInfo> questionMap = new HashMap<>();
 
         public ClientInfo(String name) {
+            this.score = 0;
             this.id = UUID.randomUUID().getMostSignificantBits();
             this.name = name;
             this.started = false;
