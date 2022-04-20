@@ -1,7 +1,7 @@
 package com.albatros.simspriser;
 
-import com.albatros.simspriser.quiz.Quiz;
-import com.albatros.simspriser.quiz.QuizService;
+import com.albatros.simspriser.domain.Quiz;
+import com.albatros.simspriser.service.QuizService;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;

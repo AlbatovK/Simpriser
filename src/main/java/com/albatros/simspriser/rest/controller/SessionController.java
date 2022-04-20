@@ -1,7 +1,11 @@
-package com.albatros.simspriser.session;
+package com.albatros.simspriser.rest.controller;
 
-import com.albatros.simspriser.quiz.Quiz;
-import com.albatros.simspriser.quiz.QuizController;
+import com.albatros.simspriser.domain.ClientInfo;
+import com.albatros.simspriser.domain.QuestionInfo;
+import com.albatros.simspriser.domain.Quiz;
+import com.albatros.simspriser.domain.Session;
+import com.albatros.simspriser.rest.dto.RegisterResponse;
+import com.albatros.simspriser.rest.dto.SendData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +24,7 @@ public class SessionController {
             if (quiz.getId() == quizId) {
                 Session current = new Session(quiz);
                 sessions.add(current);
-                long code = current.getId();
-                RegisterResponse response = new RegisterResponse(code);
+                RegisterResponse response = new RegisterResponse(current.getId());
                 return ResponseEntity.ok(response);
             }
         }
@@ -29,12 +32,10 @@ public class SessionController {
     }
 
     @GetMapping("/enter")
-    public ResponseEntity enterSession(
-            @RequestParam("session_id") long session_id,
-            @RequestParam("name") String name) {
+    public ResponseEntity enterSession(@RequestParam("session_id") long session_id, @RequestParam("name") String name) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
-                Session.ClientInfo info = new Session.ClientInfo(name);
+                ClientInfo info = new ClientInfo(name);
                 current.addClientInfo(info);
                 long clientId = info.getId();
                 RegisterResponse response = new RegisterResponse(clientId);
@@ -54,12 +55,10 @@ public class SessionController {
     }
 
     @GetMapping("/{userId}/start")
-    public void userStart(
-            @PathVariable("userId") long userId,
-            @RequestParam("session_id") long session_id) {
+    public void userStart(@PathVariable("userId") long userId, @RequestParam("session_id") long session_id) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
-                for (Session.ClientInfo info : current.getInfo()) {
+                for (ClientInfo info : current.getInfo()) {
                     if (info.getId() == userId) {
                         info.setStarted(true);
                     }
@@ -77,7 +76,7 @@ public class SessionController {
     public ResponseEntity getAllInfo(@RequestParam("session_id") long session_id) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
-                List<Session.ClientInfo> info = current.getInfo();
+                List<ClientInfo> info = current.getInfo();
                 return ResponseEntity.ok(info);
             }
         }
@@ -88,7 +87,7 @@ public class SessionController {
     public ResponseEntity hasStarted(@RequestParam("session_id") long session_id) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
-                boolean started = current.getStarted();
+                boolean started = current.isStarted();
                 return ResponseEntity.ok(started);
             }
         }
@@ -106,27 +105,22 @@ public class SessionController {
         return ResponseEntity.notFound().build();
     }
 
-
     @PostMapping(value = "/info/send", consumes = "application/json", produces = "application/json")
-    public SendData sendData(
-            @RequestParam("session_id") long session_id,
-            @RequestBody SendData data) {
+    public void sendData(@RequestParam("session_id") long session_id, @RequestBody SendData data) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
-                for (Session.ClientInfo info : current.getInfo()) {
+                for (ClientInfo info : current.getInfo()) {
                     if (info.getId() == data.getId()) {
-                        int score = data.getRight() ? 1000 : 0;
-                        if (data.getRight())
-                            score += 200 - data.getTime() * 10;
+                        int score = data.isRight() ? 1000 : 0;
+                        if (data.isRight()) score += 200 - data.getTime() * 10;
                         info.setScore(info.getScore() + score);
-                        Session.QuestionInfo qInfo = new Session.QuestionInfo(data.getRight(), data.getTime());
+                        QuestionInfo qInfo = new QuestionInfo(data.isRight(), data.getTime());
                         info.getQuestionMap().put(data.getPosition(), qInfo);
                         break;
                     }
                 }
             }
         }
-        return data;
     }
 
     @GetMapping("/end")

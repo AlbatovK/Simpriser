@@ -1,5 +1,8 @@
-package com.albatros.simspriser.quiz;
+package com.albatros.simspriser.rest.controller;
 
+import com.albatros.simspriser.domain.Quiz;
+import com.albatros.simspriser.service.QuizService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,12 +12,12 @@ import java.util.concurrent.ExecutionException;
 
 @RequestMapping("/quiz")
 @RestController
+@RequiredArgsConstructor
 public class QuizController {
 
-    public static final List<Quiz> availableQuizzes = new ArrayList<>();
-
     @Autowired
-    QuizService service;
+    private final QuizService service;
+    public static final List<Quiz> availableQuizzes = new ArrayList<>();
 
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
     public void createQuiz(@RequestBody Quiz quiz) throws ExecutionException, InterruptedException {

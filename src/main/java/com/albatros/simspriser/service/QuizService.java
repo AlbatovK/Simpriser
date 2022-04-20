@@ -1,5 +1,6 @@
-package com.albatros.simspriser.quiz;
+package com.albatros.simspriser.service;
 
+import com.albatros.simspriser.domain.Quiz;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
