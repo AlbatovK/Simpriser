@@ -106,7 +106,7 @@ public class SessionController {
     }
 
     @PostMapping(value = "/info/send", consumes = "application/json", produces = "application/json")
-    public void sendData(@RequestParam("session_id") long session_id, @RequestBody SendData data) {
+    public SendData sendData(@RequestParam("session_id") long session_id, @RequestBody SendData data) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
                 for (ClientInfo info : current.getInfo()) {
@@ -121,6 +121,7 @@ public class SessionController {
                 }
             }
         }
+        return data;
     }
 
     @GetMapping("/end")
