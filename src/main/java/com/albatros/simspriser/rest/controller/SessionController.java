@@ -31,6 +31,12 @@ public class SessionController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/api")
+    public String getApiVersion() {
+        return "v31 - stable\nv34 - current";
+    }
+
+
     @GetMapping("/enter")
     public ResponseEntity enterSession(@RequestParam("session_id") long session_id, @RequestParam("name") String name) {
         for (Session current : sessions) {
