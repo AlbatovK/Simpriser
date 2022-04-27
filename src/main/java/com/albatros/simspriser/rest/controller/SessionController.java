@@ -18,6 +18,11 @@ public class SessionController {
 
     public static final List<Session> sessions = new ArrayList<>();
 
+    @GetMapping("/api")
+    public String getApiVersion() {
+        return "v34 - last stable v35 - current";
+    }
+
     @GetMapping("/register")
     public ResponseEntity registerSession(@RequestParam("quiz_id") long quizId) {
         for (Quiz quiz : QuizController.availableQuizzes) {
@@ -30,12 +35,6 @@ public class SessionController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    @GetMapping("/api")
-    public String getApiVersion() {
-        return "v31 - stable\nv34 - current";
-    }
-
 
     @GetMapping("/enter")
     public ResponseEntity enterSession(@RequestParam("session_id") long session_id, @RequestParam("name") String name) {
