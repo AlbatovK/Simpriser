@@ -16,16 +16,19 @@ public class QuizDao implements DaoInterface<Quiz> {
 
     private static final String collection_name = "quizzes";
 
+    @Override
     public void save(Quiz quiz) throws ExecutionException, InterruptedException {
         Firestore firestore = FirestoreClient.getFirestore();
         firestore.collection(collection_name).document(quiz.getName()).set(quiz).get();
     }
 
+    @Override
     public void delete(Quiz quiz) throws ExecutionException, InterruptedException {
         Firestore firestore = FirestoreClient.getFirestore();
         firestore.collection(collection_name).document(quiz.getName()).delete().get();
     }
 
+    @Override
     public List<Quiz> getAll() throws InterruptedException, ExecutionException {
         Firestore firestore = FirestoreClient.getFirestore();
         List<Quiz> res = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.albatros.simspriser.rest.dto;
+package com.albatros.simspriser.rest.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

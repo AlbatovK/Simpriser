@@ -1,6 +1,7 @@
 package com.albatros.simspriser;
 
 import com.albatros.simspriser.domain.Quiz;
+import com.albatros.simspriser.rest.dto.QuizDto;
 import com.albatros.simspriser.service.QuizService;
 import lombok.RequiredArgsConstructor;
 import org.junit.Test;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -119,5 +121,19 @@ public class SpringApplicationTests {
 	public void database_Enabled() throws Exception {
 		List<Quiz> res = service.getQuizzes();
 		assert res != null;
+	}
+
+	@Test
+	public void dto_Test() {
+		int test_id = 1;
+		String test_name = "TEST_NAME";
+		Quiz q = Quiz.builder()
+				.id(test_id)
+				.name(test_name)
+				.questions(Collections.emptyList())
+				.topics(Collections.emptyList())
+				.build();
+		QuizDto dto = QuizDto.toDto(q);
+		assertThat(QuizDto.toDomainObject(dto)).isEqualTo(q);
 	}
 }

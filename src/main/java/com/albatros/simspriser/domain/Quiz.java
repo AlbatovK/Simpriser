@@ -28,8 +28,9 @@ public class Quiz {
 
     @Data
     @NoArgsConstructor
+    @Builder
     @AllArgsConstructor
-    static class Question {
+    public static class Question {
         private String description;
         private List<String> variants;
         private String answer;

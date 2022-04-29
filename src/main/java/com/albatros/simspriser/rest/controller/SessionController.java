@@ -4,13 +4,16 @@ import com.albatros.simspriser.domain.ClientInfo;
 import com.albatros.simspriser.domain.QuestionInfo;
 import com.albatros.simspriser.domain.Quiz;
 import com.albatros.simspriser.domain.Session;
-import com.albatros.simspriser.rest.dto.RegisterResponse;
-import com.albatros.simspriser.rest.dto.SendData;
+import com.albatros.simspriser.rest.dto.ClientInfoDto;
+import com.albatros.simspriser.rest.dto.QuizDto;
+import com.albatros.simspriser.rest.dto.response.RegisterResponse;
+import com.albatros.simspriser.rest.dto.response.SendData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequestMapping("/session")
 @RestController
@@ -20,12 +23,14 @@ public class SessionController {
 
     @GetMapping("/api")
     public String getApiVersion() {
-        return "v34 - last stable v35 - current";
+        return "v34 - last stable v36 - current";
     }
 
     @GetMapping("/register")
     public ResponseEntity registerSession(@RequestParam("quiz_id") long quizId) {
-        for (Quiz quiz : QuizController.availableQuizzes) {
+        List<Quiz> objects =
+                QuizController.availableQuizzes.stream().map(QuizDto::toDomainObject).collect(Collectors.toList());
+        for (Quiz quiz : objects) {
             if (quiz.getId() == quizId) {
                 Session current = new Session(quiz);
                 sessions.add(current);
@@ -81,7 +86,8 @@ public class SessionController {
     public ResponseEntity getAllInfo(@RequestParam("session_id") long session_id) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
-                List<ClientInfo> info = current.getInfo();
+                List<ClientInfoDto> info
+                        = current.getInfo().stream().map(ClientInfoDto::toDto).collect(Collectors.toList());
                 return ResponseEntity.ok(info);
             }
         }
@@ -103,7 +109,7 @@ public class SessionController {
     public ResponseEntity getQuiz(@RequestParam("session_id") long session_id) {
         for (Session current : sessions) {
             if (current.getId() == session_id) {
-                Quiz quiz = current.getQuiz();
+                QuizDto quiz = QuizDto.toDto(current.getQuiz());
                 return ResponseEntity.ok(quiz);
             }
         }
