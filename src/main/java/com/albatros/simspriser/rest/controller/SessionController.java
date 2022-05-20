@@ -23,7 +23,7 @@ public class SessionController {
 
     @GetMapping("/api")
     public String getApiVersion() {
-        return "v34 - last stable v36 - current";
+        return "v36 - last stable v37 - current";
     }
 
     @GetMapping("/register")
