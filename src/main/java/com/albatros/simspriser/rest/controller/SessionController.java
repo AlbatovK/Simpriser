@@ -21,6 +21,11 @@ public class SessionController {
 
     public static final List<Session> sessions = new ArrayList<>();
 
+    @GetMapping("/enable")
+    public void enable() {
+
+    }
+
     @GetMapping("/api")
     public String getApiVersion() {
         return "v36 - last stable v37 - current";
